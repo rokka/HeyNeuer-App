@@ -10,15 +10,15 @@ import Alamofire
 
 class WebManager: NSObject {
     
+    private let mainURL:String = "https://heyneuer.com/api"
+    
     
     ///Suchen Computer
     func getComputer(compNumber:String, completion: @escaping (Dictionary<String, Any>) -> () ) {
         
-        let url = "https://heyneuer.com/api/computers/\(compNumber)"
         
         
-        
-        AF.request(url, method: .get,
+        AF.request("\(mainURL)/computers/\(compNumber)", method: .get,
                    parameters: nil,
                    encoding: URLEncoding.default,
                    headers: ["Authorization": "Bearer rLEtJrkxLvrguSB8yvTTjFO8liL4h296fKB3vYWj"]).responseJSON {
@@ -55,13 +55,12 @@ class WebManager: NSObject {
     ///Update Computer
     func updateComputer(compNumber:String, newStatus:String, completion: @escaping (Dictionary<String, Any>) -> () ) {
         
-        let url = "https://heyneuer.com/api/computers/\(compNumber)"
         
         let parameters = [
             "state"  : newStatus
         ]
         
-        AF.request(url, method: .patch,
+        AF.request("\(mainURL)/computers/\(compNumber)", method: .patch,
                    parameters: parameters,
                    encoding: URLEncoding.default,
                    headers: ["Authorization": "Bearer rLEtJrkxLvrguSB8yvTTjFO8liL4h296fKB3vYWj"]).responseJSON {
