@@ -57,6 +57,7 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
     @IBOutlet weak var memoryLabel: UILabel!
     @IBOutlet weak var ssdLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusActionOutlet: UIButton!
     
     var computerModel:computerModel?
     var activeType: typeStruct = .init()
@@ -125,6 +126,19 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
     }
     
     @IBAction func statusAction(_ sender: UIButton) {
+        
+        if self.activeDataBool == true{
+            openStatusVC()
+        }else{
+            AlertController().showInformation(title: "", message: "Zuerst müssen Sie einen Computer finden", VC: self) { vc in
+                
+            }
+        }
+        
+    }
+    
+    
+    func openStatusVC() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         let viewControllerToPresent = storyboard.instantiateViewController(identifier: "status") as? pageStatusViewController

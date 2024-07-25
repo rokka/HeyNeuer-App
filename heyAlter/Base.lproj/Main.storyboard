@@ -276,6 +276,7 @@
                         <outlet property="myActivity" destination="7nG-9O-pmR" id="AeD-md-u3G"/>
                         <outlet property="nameLabel" destination="1Yx-L5-7iQ" id="49Y-dW-UjY"/>
                         <outlet property="ssdLabel" destination="oEv-2t-ZLv" id="eSm-49-QEM"/>
+                        <outlet property="statusActionOutlet" destination="kk6-GP-Fjc" id="3uf-xF-e6x"/>
                         <outlet property="statusLabel" destination="xeQ-Iu-4cY" id="85b-f3-Rpc"/>
                         <outlet property="typeLabel" destination="VV6-2G-jyR" id="KqQ-IK-eqF"/>
                     </connections>
