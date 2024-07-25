@@ -1,0 +1,24 @@
+{
+  "originHash" : "cf28e8bd045ae102150ccf58daa3e30501e7a9224dd9360e0df6f823a990d53e",
+  "pins" : [
+    {
+      "identity" : "bottomsheetcontroller",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/naru-jpn/BottomSheetController",
+      "state" : {
+        "revision" : "4794fc2741da184021cb9feda54ee188285116bd",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "qrcodereader.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yannickl/QRCodeReader.swift.git",
+      "state" : {
+        "revision" : "5020b5a47199d8ba80c83a4b4fafd70e9dc9dc7f",
+        "version" : "10.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}

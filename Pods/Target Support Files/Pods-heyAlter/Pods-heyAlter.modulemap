@@ -1,0 +1,6 @@
+framework module Pods_heyAlter {
+  umbrella header "Pods-heyAlter-umbrella.h"
+
+  export *
+  module * { export * }
+}
