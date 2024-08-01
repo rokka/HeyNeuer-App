@@ -18,7 +18,7 @@ class WebManager: NSObject {
         
         
         
-        AF.request("\(mainURL)/computers/\(compNumber)", method: .get,
+        AF.request("\(mainURL)/computers/HA-E-\(compNumber)", method: .get,
                    parameters: nil,
                    encoding: URLEncoding.default,
                    headers: ["Authorization": "Bearer rLEtJrkxLvrguSB8yvTTjFO8liL4h296fKB3vYWj"]).responseJSON {
@@ -48,7 +48,6 @@ class WebManager: NSObject {
                 
             }
         }
-        
     }
     
     
@@ -82,12 +81,10 @@ class WebManager: NSObject {
                 
                 let dic:Dictionary = Dictionary<String, Any>.init()
                 completion(dic)
-                
+
             }
         }
-        
     }
-    
 }
 
 

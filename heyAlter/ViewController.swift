@@ -169,10 +169,17 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
 
           // Or by using the closure pattern
           readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+              
+              
               print(result?.value as Any)
               
+              let searchText:String = result!.value
               
-              self.compNummer.text = result?.value
+              let number = String.parse(from: searchText)
+              print(number as Any)
+              
+              
+              self.compNummer.text = "\(number!)"
               self.searchComputer()
 
           }
@@ -313,3 +320,8 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
     
 }
 
+extension String {
+    static func parse(from string: String) -> String? {
+        return String(string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+    }
+}
