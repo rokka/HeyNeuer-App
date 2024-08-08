@@ -35,7 +35,7 @@ protocol updateComputerDelegate:AnyObject {
 
 class ViewController: UITableViewController, updateComputerDelegate, QRCodeReaderViewControllerDelegate{
     
-        
+    
     struct typeStruct {
         var delivered = "Ausgeliefert"
         var new = "Neu"
@@ -166,59 +166,73 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
     @IBAction func scannerAction(_ sender: UIButton) {
         
         readerVC.delegate = self
-
-          // Or by using the closure pattern
-          readerVC.completionBlock = { (result: QRCodeReaderResult?) in
-              
-              
-              print(result?.value as Any)
-              
-              let searchText:String = result!.value
-              
-              let number = String.parse(from: searchText)
-              print(number as Any)
-              
-              
-              self.compNummer.text = "\(number!)"
-              self.searchComputer()
-
-          }
-
-          // Presents the readerVC as modal form sheet
-          readerVC.modalPresentationStyle = .formSheet
-         
-          present(readerVC, animated: true, completion: nil)
+        
+        // Or by using the closure pattern
+        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+            
+            
+            print(result?.value as Any)
+            
+            let searchText:String = result!.value
+            
+            let number = String.parse(from: searchText)
+            print(number as Any)
+            
+            
+            self.compNummer.text = "\(number!)"
+            self.searchComputer()
+            
+        }
+        
+        // Presents the readerVC as modal form sheet
+        readerVC.modalPresentationStyle = .formSheet
+        
+        present(readerVC, animated: true, completion: nil)
         
     }
     
     // MARK: - QRCodeReaderViewController Delegate Methods
-
+    
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
-      reader.stopScanning()
-
-      dismiss(animated: true, completion: nil)
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
     }
-
+    
     //This is an optional delegate method, that allows you to be notified when the user switches the cameraName
     //By pressing on the switch camera button
     func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
-       
+        
         
     }
-
+    
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
-      reader.stopScanning()
-
-      dismiss(animated: true, completion: nil)
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
     }
-
+    
     
     @IBAction func searchAction(_ sender: UIButton) {
         
         if self.compNummer.text == ""{
             
+            AlertController().showInformation(title: "", message: "Geben Sie die Nummer ein", VC: self) { vc in
+            }
+            
         }else{
-            searchComputer()
+            
+            if Singletone.shared.api_token == ""{
+                
+                AlertController().showInformation(title: "", message: "Geben Sie Ihr API-Token ein", VC: self) { vc in
+                    let story:UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+                    let vc:settingsTableViewController = story.instantiateViewController(identifier: "token") as! settingsTableViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+            }else{
+                searchComputer()
+            }
         }
         
         
@@ -240,7 +254,6 @@ class ViewController: UITableViewController, updateComputerDelegate, QRCodeReade
                 self.tableView.reloadData()
                 
                 AlertController().showInformation(title: "", message: "Nichts gefunden", VC: self) { vc in
-                    
                 }
                 
                 
