@@ -8,22 +8,37 @@
 import UIKit
 
 class statisticViewController: UIViewController {
-
+    
+    @IBOutlet weak var lineChart: LineChart!
+    var allDataDicArray:Array<Dictionary<String, Array<computerModel>>> = Array()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let dataEntries = generateEntries()
+        
+        lineChart.dataEntries = dataEntries
+        lineChart.isCurved = true
+        
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func generateEntries() -> [PointEntry] {
+        
+        var result: [PointEntry] = []
+        
+        for mod in self.allDataDicArray{
+            
+            let dateString:String = mod.keys.first!
+            let valeyCount:Int = mod.values.first!.count
+            
+            result.append(PointEntry(value: valeyCount, label: dateString))
+            
+        }
+        
+        return result
     }
-    */
-
+    
+    
 }

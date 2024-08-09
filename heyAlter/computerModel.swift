@@ -16,6 +16,9 @@ class computerModel: NSObject {
     var hard_drive_space_in_gb:Int = 0
     var state:String = ""
     
+    var number:Int = 0
+    var created_at:String = ""
+
     func initModelFromFiles(dictionary: [String: AnyObject]) -> computerModel {
         
         self.type = dictionary["type"] as? Int ?? 0
@@ -25,6 +28,11 @@ class computerModel: NSObject {
         self.hard_drive_space_in_gb = dictionary["hard_drive_space_in_gb"] as? Int ?? 0
         self.state = dictionary["state"] as? String ?? ""
 
+        self.number = dictionary["number"] as? Int ?? 0
+        
+        var dateStr:String = dictionary["created_at"] as? String ?? ""
+        self.created_at = String(dateStr.prefix(10))
+        
         return self
         
     }
